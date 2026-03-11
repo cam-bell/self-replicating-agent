@@ -1,0 +1,19 @@
+flowchart LR
+    user["User Trigger<br/>CLI: uv run world.py"] --> world["world.py<br/>Distributed Orchestrator"]
+    world --> host["gRPC Runtime Host<br/>GrpcWorkerAgentRuntimeHost"]
+    world --> worker["gRPC Worker Runtime<br/>GrpcWorkerAgentRuntime"]
+    worker --> creator["Creator Agent<br/>creator.py"]
+    creator --> template["Base Template<br/>agent.py"]
+    creator --> generated["Generated Agents<br/>agent1.py ... agentN.py"]
+    creator --> schema["Shared Messages<br/>messages.py"]
+    generated --> schema
+    creator --> model["OpenAI Chat Model<br/>gpt-4o-mini"]
+    generated --> model
+    generated --> artifacts["Artifacts<br/>idea1.md ... ideaN.md"]
+
+    subgraph runtime["Distributed Runtime Boundary"]
+        host
+        worker
+        creator
+        generated
+    end

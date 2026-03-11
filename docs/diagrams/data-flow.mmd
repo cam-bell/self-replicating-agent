@@ -1,0 +1,14 @@
+flowchart LR
+    seed["CLI Run Request"] --> world["world.py"]
+    world --> filename["Filename Message<br/>agentN.py"]
+    filename --> creator["creator.py"]
+    template["agent.py template"] --> creator
+    creator --> code["Generated Python Code"]
+    code --> module["Dynamic Import + Registration"]
+    module --> agent["Generated Agent"]
+    agent --> message["Business Idea / Refinement Messages"]
+    message --> peer["Peer Generated Agent"]
+    agent --> idea["ideaN.md output"]
+    peer --> idea
+    messages["messages.py recipient selection"] --> agent
+    messages --> peer

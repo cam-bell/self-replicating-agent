@@ -1,0 +1,23 @@
+[project]
+name = "self-replicating-agent"
+version = "0.1.0"
+description = "Distributed AutoGen Core self-replicating agent system."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "autogen-agentchat>=0.4.9.2",
+    "autogen-ext[grpc,openai]>=0.4.9.2",
+    "openai>=1.68.2",
+    "python-dotenv>=1.0.1",
+]
+
+[project.optional-dependencies]
+notebooks = [
+    "ipykernel>=6.29.5",
+    "langchain>=0.3.21",
+    "langchain-community>=0.3.20",
+]
+
+[build-system]
+requires = ["setuptools>=78.1.0"]
+build-backend = "setuptools.build_meta"

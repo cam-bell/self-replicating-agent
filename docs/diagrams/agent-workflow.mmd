@@ -1,0 +1,16 @@
+flowchart TD
+    start["Start Run<br/>uv run world.py"] --> host["Start gRPC Host"]
+    host --> worker["Start Worker Runtime"]
+    worker --> register["Register Creator Agent"]
+    register --> loop["For each agent index 1..N"]
+    loop --> generate["Creator generates Python from agent.py template"]
+    generate --> write["Write agentN.py to disk"]
+    write --> load["Import and register generated agent"]
+    load --> prompt["Send startup prompt<br/>Give me an idea"]
+    prompt --> refine{"Refine with peer agent?"}
+    refine -->|Yes| peer["Send idea to another generated agent"]
+    peer --> result["Receive refined idea"]
+    refine -->|No| result
+    result --> output["Write ideaN.md"]
+    output --> loop
+    loop --> finish["Stop worker and host"]
